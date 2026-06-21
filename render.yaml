@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: general-mcp-server
+    runtime: python
+    plan: free                          # free tier — spins down after 15min idle
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn cloud_server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11.0"
+      - key: MCP_API_KEY
+        generateValue: true             # Render auto-generates a secure random key
+      - key: OPENAI_API_KEY
+        sync: false                     # set manually in Render dashboard
+      - key: DEEPSEEK_API_KEY
+        sync: false                     # set manually in Render dashboard
+      - key: ANTHROPIC_API_KEY
+        sync: false                     # set manually in Render dashboard

@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "general-mcp-server": {
+      "url": "http://your-host:8080/mcp"
+    }
+  }
+}

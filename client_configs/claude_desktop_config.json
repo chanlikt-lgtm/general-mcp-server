@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "general-mcp-server": {
+      "command": "C:\\Users\\User\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+      "args": ["E:\\claude\\MCP\\server.py"]
+    }
+  }
+}

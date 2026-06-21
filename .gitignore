@@ -1,0 +1,50 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+*.egg-info/
+dist/
+build/
+
+# Environment / secrets
+.env
+*.env
+.env.local
+
+# Data files (don't commit user data or DB)
+data/*.db
+data/*.csv
+data/*.json
+data/*.txt
+data/*.pdf
+data/*.xlsx
+data/*.zip
+data/*.gz
+data/*.png
+data/*.jpg
+data/*.mp3
+data/*.wav
+
+# Keep data/ directory itself
+!data/.gitkeep
+
+# pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Models (large binary files)
+models/*.pt
+models/*.bin
+models/*.onnx

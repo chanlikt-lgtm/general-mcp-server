@@ -1,0 +1,26 @@
+# Core MCP server
+mcp==1.28.0
+sse-starlette==3.4.5
+
+# API / Dashboard
+fastapi==0.137.1
+uvicorn==0.49.0
+httpx==0.28.1
+httpx-sse==0.4.3
+starlette==1.3.1
+pydantic==2.13.4
+pydantic-settings==2.14.1
+anyio==4.13.0
+
+# Tool dependencies
+pillow==12.1.1          # image tools
+pypdf==6.9.2            # PDF tools
+openpyxl==3.1.5         # Excel tools
+cryptography==48.0.0    # crypto/security tools
+psutil==5.9.4           # system tools
+pydub==0.25.1           # audio tools
+scikit-learn==1.8.0     # ML utils
+beautifulsoup4==4.11.1  # web scraping
+feedparser==6.0.12      # RSS parsing
+black==26.5.1           # code formatting tool
+ruff==0.15.17           # code linting tool
