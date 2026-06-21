@@ -49,7 +49,7 @@ async def test_all_tools_registered(mcp_server):
     tools = await mcp_server.list_tools()
     names = [t.name for t in tools]
     for expected in ["query_database", "list_tables", "describe_table",
-                     "read_file", "write_file", "list_files", "delete_file",
+                     "mcp_read_file", "mcp_write_file", "list_files", "delete_file",
                      "fetch_url", "call_api"]:
         assert expected in names, f"Missing tool: {expected}"
 
@@ -80,13 +80,13 @@ async def test_query_blocked(mcp_server):
     assert "Error" in text
 
 async def test_write_then_read_via_mcp(mcp_server):
-    await mcp_server.call_tool("write_file", {"filename": "test.txt", "content": "mcp works"})
-    result = await mcp_server.call_tool("read_file", {"filename": "test.txt"})
+    await mcp_server.call_tool("mcp_write_file", {"filename": "test.txt", "content": "mcp works"})
+    result = await mcp_server.call_tool("mcp_read_file", {"filename": "test.txt"})
     text = result[0].text if hasattr(result[0], "text") else str(result[0])
     assert "mcp works" in text
 
 async def test_path_traversal_blocked(mcp_server):
-    result = await mcp_server.call_tool("read_file", {"filename": "../../secret"})
+    result = await mcp_server.call_tool("mcp_read_file", {"filename": "../../secret"})
     text = result[0].text if hasattr(result[0], "text") else str(result[0])
     assert "Error" in text
 

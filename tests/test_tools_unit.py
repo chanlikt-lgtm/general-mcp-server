@@ -85,20 +85,20 @@ def file_tools(tmp_path, monkeypatch):
 
 
 def test_write_then_read(file_tools):
-    file_tools["write_file"]("hello.txt", "hello world")
-    result = file_tools["read_file"]("hello.txt")
+    file_tools["mcp_write_file"]("hello.txt", "hello world")
+    result = file_tools["mcp_read_file"]("hello.txt")
     assert result == "hello world"
 
 def test_read_missing_file(file_tools):
-    result = file_tools["read_file"]("ghost.txt")
+    result = file_tools["mcp_read_file"]("ghost.txt")
     assert "not found" in result.lower()
 
 def test_path_traversal_read_blocked(file_tools):
-    result = file_tools["read_file"]("../../etc/passwd")
+    result = file_tools["mcp_read_file"]("../../etc/passwd")
     assert "Error" in result
 
 def test_path_traversal_write_blocked(file_tools):
-    result = file_tools["write_file"]("../../evil.txt", "bad")
+    result = file_tools["mcp_write_file"]("../../evil.txt", "bad")
     assert "Error" in result
 
 def test_list_files_empty(file_tools):
@@ -106,17 +106,17 @@ def test_list_files_empty(file_tools):
     assert result == "Empty directory."
 
 def test_list_files_after_write(file_tools):
-    file_tools["write_file"]("a.txt", "a")
-    file_tools["write_file"]("b.txt", "b")
+    file_tools["mcp_write_file"]("a.txt", "a")
+    file_tools["mcp_write_file"]("b.txt", "b")
     result = file_tools["list_files"]()
     assert "a.txt" in result
     assert "b.txt" in result
 
 def test_delete_file(file_tools):
-    file_tools["write_file"]("del.txt", "bye")
+    file_tools["mcp_write_file"]("del.txt", "bye")
     result = file_tools["delete_file"]("del.txt")
     assert "Deleted" in result
-    assert "not found" in file_tools["read_file"]("del.txt").lower()
+    assert "not found" in file_tools["mcp_read_file"]("del.txt").lower()
 
 def test_delete_missing_file(file_tools):
     result = file_tools["delete_file"]("ghost.txt")

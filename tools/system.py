@@ -77,11 +77,12 @@ def register_system_tools(mcp: FastMCP) -> None:
         return "\n".join(sorted(os.environ.keys()))
 
     @mcp.tool()
-    def list_processes(filter: str = "") -> str:
+    def mcp_list_processes(filter: str = "") -> str:
         """
         List running processes with their PID, name, and CPU/memory usage.
         filter: optional substring to filter process names, e.g. 'python' or 'chrome'.
         Returns up to 30 matching processes sorted by memory usage (highest first).
+        Use DesktopCommanderMCP's list_processes for richer process details.
         """
         try:
             procs = []

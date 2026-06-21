@@ -15,11 +15,12 @@ def _safe_path(filename: str) -> str | None:
 def register_file_tools(mcp: FastMCP) -> None:
 
     @mcp.tool()
-    def read_file(filename: str) -> str:
+    def mcp_read_file(filename: str) -> str:
         """
-        Read the text content of a file inside the data/ directory.
+        Read the text content of a file inside the MCP server's data/ directory.
         filename: relative path, e.g. 'notes.txt' or 'reports/summary.md'.
-        Path traversal (../) is blocked for security.
+        Path traversal (../) is blocked — only files inside data/ are accessible.
+        Use DesktopCommanderMCP's read_file to read arbitrary files on the PC.
         Returns the full file content as a string.
         """
         path = _safe_path(filename)
@@ -35,12 +36,13 @@ def register_file_tools(mcp: FastMCP) -> None:
             return f"Failed to read file: {e}"
 
     @mcp.tool()
-    def write_file(filename: str, content: str) -> str:
+    def mcp_write_file(filename: str, content: str) -> str:
         """
-        Write text content to a file inside the data/ directory.
+        Write text content to a file inside the MCP server's data/ directory.
         filename: relative path, e.g. 'output.txt' or 'reports/result.md'.
         Creates parent directories if needed. Overwrites existing files.
-        Path traversal (../) is blocked for security.
+        Path traversal (../) is blocked — only files inside data/ are writable.
+        Use DesktopCommanderMCP's write_file to write to arbitrary paths on the PC.
         Returns a confirmation message.
         """
         path = _safe_path(filename)

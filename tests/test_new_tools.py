@@ -49,7 +49,7 @@ def test_get_env_list():
 def test_list_processes():
     from tools.system import register_system_tools
     tools = get_tools(register_system_tools)
-    result = tools["list_processes"]("python")
+    result = tools["mcp_list_processes"]("python")
     assert "python" in result.lower() or "No matching" in result
 
 
