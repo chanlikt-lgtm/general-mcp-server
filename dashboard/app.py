@@ -28,7 +28,7 @@ from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 
 # ── config ────────────────────────────────────────────────────────────────────
-MCP_BASE     = "http://localhost:8080"
+MCP_BASE     = os.environ.get("MCP_BASE", "https://general-mcp-server-0ukc.onrender.com")
 MCP_ENDPOINT = f"{MCP_BASE}/mcp"
 DASHBOARD_PORT = 8081
 _START_TIME  = time.time()
